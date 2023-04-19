@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment-pay
+  labels:
+    app: service-pay
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-pay
+  template:
+    metadata:
+      labels:
+        app: service-pay
+    spec:
+      containers:
+      - name: app-pay
+        image: juliocm18/app-pay:3
+        ports:
+        - containerPort: 5004
+        env:
+        - name: NACOS_SERVERADDR
+          value: "143.244.222.245:8848"
+        - name: NACOS_NAMESPACE
+          value: "config-service-test"
+        - name: NACOS_IDENTITYKEY
+          value: "nacos"
+        - name: NACOS_IDENTITYVALUE
+          value: "nacos"
+        - name: NACOS_ENV
+          value: "config-service-test"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: app-service-pay
+spec:
+  type: LoadBalancer
+  selector:
+    app: service-pay
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5004
+    name: http
