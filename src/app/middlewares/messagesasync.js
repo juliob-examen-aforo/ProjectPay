@@ -1,5 +1,6 @@
 const { Kafka, Partitioners } = require('kafkajs')
 
+const logProvider = require("./logprovider");
 const kafka = new Kafka({
     createPartitioner: Partitioners.LegacyPartitioner,
     clientId: 'transaction-client',
@@ -29,7 +30,8 @@ const messagesAsync = {
                 { value: JSON.stringify(data) }
             ],
         })
-        console.log('Message sent to topic transaction-topic')
+        
+        logProvider.info("Message sent to topic transaction-topic from  payment:", data);
 
         await producer.disconnect()
     }
