@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app-pay
-          image: juliocm18/app-pay:5
+          image: juliocm18/app-pay
           ports:
             - containerPort: 5004
           env:
