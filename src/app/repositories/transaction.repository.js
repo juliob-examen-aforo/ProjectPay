@@ -10,7 +10,7 @@ const con = mysql.createConnection({
 
 const transactionRepository = {
     addTransaction: async (amount, invoiceId) => {
-        const sql = `INSERT INTO operation(id_invoice, amount, date) VALUES(${amount}, ${invoiceId}, NOW());`
+        const sql = `INSERT INTO operation(id_invoice, amount, date) VALUES(${invoiceId},${amount},  NOW());`
         const response = await new Promise((resolve, reject) =>{
             con.query(sql, (err, result) => {
                 if (err)

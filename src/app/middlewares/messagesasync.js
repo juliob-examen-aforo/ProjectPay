@@ -7,7 +7,7 @@ const kafka = new Kafka({
 })
 
 const messagesAsync = {
-    send: async (transactionId, accountId, amount, type) => {
+    send: async (transactionId, invoiceId, amount, type) => {
         const producer = kafka.producer({
             allowAutoTopicCreation: true,
             transactionTimeout: 30000
@@ -17,7 +17,7 @@ const messagesAsync = {
     
         var data = {
             transactionId: transactionId,
-            accountId: accountId,
+            invoiceId: invoiceId,
             type: type,
             creationDate: new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '').toString(),
             amount: amount

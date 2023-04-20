@@ -1,7 +1,7 @@
 const epxress = require('express')
 const router = epxress.Router()
 
-router.use('/transaction', require('./transaction.routes'))
+router.use('/payment', require('./transaction.routes'))
 
 router.get('*', (req, res) => {
     res.status(404)
