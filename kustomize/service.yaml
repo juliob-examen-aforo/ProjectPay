@@ -7,7 +7,7 @@ spec:
   selector:
     app: service-pay
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 5004
-    name: http
+    - protocol: TCP
+      port: 80
+      targetPort: 5004
+      name: http
